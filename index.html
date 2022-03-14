@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" id="html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/itg_logo.png" type="image/x-icon">
+    <title>ITG EBooks: 2nd Sem</title>
+</head>
+<link rel="stylesheet" href="css/style.css">
+<body>
+    <nav>
+        <img src="img/itg_logo.png" width="50" height="50">
+        <a href="index.html">ITG EBooks: 2nd Sem</a>
+        <input id="value" type="search" placeholder="Search Book by Name and Author" oninput="search()" />
+    </nav>
+    <div id="suggestion_box">
+        <a href="https://itgopeshwar.ac.in/">ITG<img src="img/itg_logo.png" width="20" height="20"></a>
+        <a href="#">how to find books</a><a href="#">haw to change books</a><a href="#">hbw to make </a><a href="#">hxw to bake</a>
+        <a href="#">hzw to sick</a>
+    </div>
+    <main>
+        <div id="scrolling_books" class="shelf">
+            <div class="box"></div>
+            <a class="book" href="book_type_maths_name"><img src="img/ds.png" draggable="false"></a>
+            <a class="book" href="book_type_maths_name"><img src="img/dsc.png" draggable="false"></a>
+            <a class="book" href="book_type_maths_name"><img src="img/oop.png" draggable="false"></a>
+            <a class="book" href="book_type_maths_name"><img src="img/dsc2.png" draggable="false"></a>
+            <a class="book" href="book_type_maths_name"><img src="img/java.png" draggable="false"></a>
+        </div>
+        <div class="notice">
+            <div class="notice_box"></div>
+            <p>This site is static so you can only download and explore e-books !!! &CircleTimes; New Updates were coming soon stay in touch.</p>
+        </div>
+        <div class="main_content">
+            <div class="branch" onclick="cse_books(0)">
+                <div class="branch_name">
+                    Computer Science
+                </div>
+            </div>
+            <div class="branch" onclick="cse_books(1)">
+                <div class="branch_name">
+                    Civil
+                </div>
+            </div>
+            <div class="branch" onclick="cse_books(2)">
+                <div class="branch_name">
+                    Mechanical
+                </div>
+            </div>
+            <div class="branch" onclick="cse_books(3)">
+                <div class="branch_name">
+                    Electronic
+                </div>
+            </div>
+            <div class="branch" onclick="cse_books(4)">
+                <div class="branch_name">
+                    Electrical
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="information">
+        <p>Branch</p> 
+        <h2 id="branch_name"></h2>
+        <div class="content_box">
+            <iframe id="iframe" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+    <footer>
+        &copy; 2022
+    </footer>
+    <script>
+        function sleep(milliseconds) {
+            const date = Date.now();
+            let currentDate = null;
+            do {
+                currentDate = Date.now();
+            } while (currentDate - date < milliseconds);
+        }
+
+        function search() {
+            var value = document.getElementById("value").value;
+            var suggest = document.getElementById("suggestion_box");
+            var a = suggest.getElementsByTagName("a");
+            for(let i=0; i<a.length; i++) {
+                var context = a[i].innerText.toLocaleLowerCase();
+                var is = context.includes(value);
+                if(context.includes(value) && value != "") {
+                    suggest.getElementsByTagName("a")[i].style.display = "flex";
+                } else {
+                    suggest.getElementsByTagName("a")[i].style.display = "";
+                }
+            }
+            
+        }
+
+        var time = new Date;
+        var hour = time.getHours();
+        if(hour < 6 || hour > 19) {
+            document.getElementById("html").style.filter = "invert(0)";
+        } else {
+            document.getElementById("html").style.filter = "invert(0)";
+        }
+
+        function cse_books(num) {
+            var clickedAll = document.getElementsByClassName("branch");
+            var clicked = document.getElementsByClassName("branch")[num];
+            console.log(clicked.innerText);
+            if(clicked) {
+                for(let i=0; i<clickedAll.length; i++) {
+                    clickedAll[i].setAttribute("style", "opacity: 100%;");
+                }
+                clicked.setAttribute("style", "opacity: 50%;");
+            }
+            var branchName = document.getElementById("branch_name").innerText = clicked.innerText;
+            var branchPage = document.getElementById("iframe").setAttribute("src", branchName + ".html");
+        }
+    </script>
+</body>
+</html>
